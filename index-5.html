@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f0a24">
+<title>Um pedacinho de felicidade ✨</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,400;1,9..144,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#0f0a24;--bg2:#1a1040;
+  --violet:#a98bff;--lilac:#d4c3ff;--orchid:#e6a9ff;--rose:#ffb8e6;
+  --text:#f6f0ff;--text2:#c3b6e0;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:var(--sans);color:var(--text);
+  background:linear-gradient(160deg,var(--bg1),var(--bg2));
+  background-attachment:fixed;overflow:hidden;
+}
+.bg{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5}
+.b1{width:55vmax;height:55vmax;background:#7a3cff;top:-15vmax;left:-12vmax;animation:drift1 38s ease-in-out infinite alternate}
+.b2{width:45vmax;height:45vmax;background:#c43cc8;bottom:-14vmax;right:-10vmax;opacity:.38;animation:drift2 44s ease-in-out infinite alternate}
+.b3{width:40vmax;height:40vmax;background:#4a5bff;top:35%;left:45%;opacity:.3;animation:drift3 50s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(18vmax,14vmax) scale(1.15)}}
+@keyframes drift2{to{transform:translate(-16vmax,-12vmax) scale(.9)}}
+@keyframes drift3{to{transform:translate(-22vmax,10vmax) scale(1.2)}}
+.star{position:absolute;background:#fff;border-radius:50%;opacity:.15;animation:twinkle var(--d,4s) ease-in-out var(--l,0s) infinite}
+@keyframes twinkle{0%,100%{opacity:.1;transform:scale(.8)}50%{opacity:.95;transform:scale(1.2)}}
+
+.progress{
+  position:fixed;top:0;left:0;right:0;z-index:5;display:flex;gap:6px;
+  padding:16px clamp(16px,6vw,48px);opacity:0;transition:opacity .4s;pointer-events:none;
+}
+.progress.on{opacity:1}
+.progress i{flex:1;height:4px;border-radius:4px;background:rgba(212,195,255,.18);transition:background .4s,flex .4s}
+.progress i.done{background:var(--violet)}
+.progress i.cur{background:var(--rose);flex:2.2}
+
+main{
+  position:relative;z-index:2;height:100%;display:flex;align-items:center;justify-content:center;
+  padding:64px 24px 40px;
+}
+.screen{
+  width:100%;max-width:640px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px;
+  animation:enter .9s cubic-bezier(.2,.7,.2,1) both;
+}
+.screen.leave{animation:leave .35s ease forwards}
+@keyframes enter{from{opacity:0;transform:translateY(22px);filter:blur(10px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes leave{to{opacity:0;transform:translateY(-6px)}}
+
+.spark{font-size:clamp(46px,12vw,64px);animation:float 5s ease-in-out infinite;line-height:1}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+h1,h2{font-family:var(--serif);font-weight:700;line-height:1.1}
+h1{
+  font-size:clamp(40px,10.5vw,76px);
+  background:linear-gradient(120deg,#fff 0%,var(--lilac) 45%,var(--orchid) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+  padding-bottom:.08em;
+}
+.lead{font-size:clamp(16px,4.2vw,19px);line-height:1.65;color:var(--text2);max-width:30em}
+.count{font-size:14px;font-weight:600;letter-spacing:.06em;color:var(--text2)}
+.msg{
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:clamp(27px,6.8vw,44px);line-height:1.35;color:var(--text);
+  text-shadow:0 4px 28px rgba(140,90,255,.55);text-wrap:balance;
+}
+.final-text{
+  font-size:clamp(17px,4.4vw,21px);line-height:1.7;color:var(--lilac);max-width:28em;
+  opacity:0;animation:fade 1.2s ease 1.3s forwards;
+}
+@keyframes fade{to{opacity:1}}
+
+button{font:inherit;cursor:pointer;border:0}
+.btn{
+  font-family:var(--sans);font-weight:700;font-size:17px;color:#1a0f3a;
+  padding:15px 34px;border-radius:999px;
+  background:linear-gradient(120deg,var(--rose),var(--violet));
+  box-shadow:0 10px 30px rgba(169,139,255,.35);
+  transition:transform .25s,box-shadow .25s;
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(169,139,255,.5)}
+.btn:active{transform:translateY(0)}
+.link{
+  background:none;color:var(--text2);font-family:var(--sans);font-size:15px;font-weight:600;
+  padding:10px 18px;border-radius:999px;border:1px solid rgba(212,195,255,.25);
+  opacity:0;animation:fade 1s ease 2.4s forwards;transition:color .2s,border-color .2s;
+}
+.link:hover{color:var(--text);border-color:var(--lilac)}
+button:focus-visible{outline:3px solid var(--rose);outline-offset:4px}
+
+.photo{
+  width:min(260px,62vw);aspect-ratio:1;object-fit:cover;border-radius:50%;
+  border:3px solid rgba(230,169,255,.55);
+  box-shadow:0 0 0 8px rgba(169,139,255,.14),0 16px 50px rgba(140,90,255,.5);
+}
+.music-btn{
+  position:fixed;right:16px;bottom:16px;z-index:6;width:46px;height:46px;border-radius:50%;
+  display:none;align-items:center;justify-content:center;font-size:20px;
+  background:rgba(26,16,64,.7);color:var(--lilac);border:1px solid rgba(212,195,255,.3);
+  backdrop-filter:blur(6px);transition:transform .2s,border-color .2s;
+}
+.music-btn.on{display:flex}
+.music-btn:hover{transform:scale(1.08);border-color:var(--lilac)}
+.floaty{
+  position:fixed;bottom:-40px;z-index:1;pointer-events:none;opacity:0;
+  animation:rise var(--t,9s) linear forwards;
+}
+@keyframes rise{
+  0%{transform:translateY(0) translateX(0);opacity:0}
+  12%{opacity:.85}
+  85%{opacity:.7}
+  100%{transform:translateY(-110vh) translateX(var(--x,20px));opacity:0}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .floaty,.blob{display:none}
+  .star{animation:none;opacity:.5}
+  .final-text,.link{opacity:1}
+}
+</style>
+</head>
+<body>
+<div class="bg" id="bg" aria-hidden="true">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+</div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<main id="stage" aria-live="polite"></main>
+<button class="music-btn" id="musicBtn" type="button" aria-label="Pausar música" title="Música">🎵</button>
+
+<script>
+// ✏️ ADICIONE AS FRASES AQUI: uma por linha, entre aspas e separadas por vírgula.
+// Exemplo: "Minha frase aqui.",
+const messages = [
+  "Meu amor, desculpa por ir andando de bicicleta, eu não queria ir, mais minha mãe me obrigou.",
+  "Se eu não fosse ela ia tira meu celular e eu não ia fala com vc aquela hora.",
+  "Eu queria ter ficado com vc conversando e cantando juntos, fazendo vc rir e tals meu amor.",
+  "Novamente desculpa princesa.",
+  "Se vc fica incomodada meu amor, eu juro que vou mudar isso bê, assim como tô mudando outra coisa mb.",
+  "Eu te amo meu amor, e espero que vc não fique mais brava cmg, quero ver esse seu lindo sorriso mb.",
+  "Vc e a garota que eu mais admiro e amo, então eu vou fazer de tudo pra melhorar e fazer vc feliz gatona.",
+  "Me perdoa meu amor ❤️🫶🏻"
+];
+
+// 🎵 MÚSICA: coloque o arquivo de áudio na mesma pasta do index.html e escreva o nome aqui.
+// Exemplo: "musica.mp3". Deixe "" para ficar sem música.
+const musicSrc = "";
+
+// 📷 FOTO: coloque a imagem na mesma pasta do index.html e escreva o nome aqui.
+// Exemplo: "foto.jpg". Ela aparece na tela final. Deixe "" para ficar sem foto.
+const photoSrc = "";
+
+const total = messages.length;
+
+// Música (só toca depois do clique em "Começar", porque o navegador bloqueia som automático)
+const musicBtn = document.getElementById('musicBtn');
+let audio = null;
+if (musicSrc) {
+  audio = new Audio(musicSrc);
+  audio.loop = true;
+  audio.volume = 0.6;
+  musicBtn.classList.add('on');
+  musicBtn.addEventListener('click', () => {
+    if (audio.paused) { audio.play().catch(() => {}); } else { audio.pause(); }
+  });
+  audio.addEventListener('play', () => { musicBtn.textContent = '🎵'; musicBtn.setAttribute('aria-label', 'Pausar música'); musicBtn.style.opacity = 1; });
+  audio.addEventListener('pause', () => { musicBtn.textContent = '🔇'; musicBtn.setAttribute('aria-label', 'Tocar música'); musicBtn.style.opacity = .7; });
+}
+function startMusic() { if (audio && audio.paused && !audio.dataset.started) { audio.dataset.started = '1'; audio.play().catch(() => {}); } }
+const stage = document.getElementById('stage');
+const progress = document.getElementById('progress');
+const bg = document.getElementById('bg');
+let current = null;
+let busy = false;
+let floatTimer = null;
+
+// Estrelinhas
+for (let i = 0; i < 60; i++) {
+  const s = document.createElement('span');
+  const size = (Math.random() * 2 + 1).toFixed(1);
+  s.className = 'star';
+  s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${size}px;height:${size}px;--d:${(Math.random()*4+2.5).toFixed(1)}s;--l:${(Math.random()*5).toFixed(1)}s`;
+  bg.appendChild(s);
+}
+
+// Barra de progresso
+function buildProgress() {
+  progress.innerHTML = '';
+  for (let i = 0; i < total; i++) progress.appendChild(document.createElement('i'));
+}
+function updateProgress(idx) {
+  [...progress.children].forEach((el, i) => {
+    el.className = i < idx ? 'done' : i === idx ? 'cur' : '';
+  });
+  progress.classList.add('on');
+}
+function hideProgress() { progress.classList.remove('on'); }
+
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+
+// Troca de tela com saída rápida e bloqueio de cliques duplos
+function show(build) {
+  if (busy) return;
+  busy = true;
+  stopFloaties();
+  const mount = () => {
+    stage.innerHTML = '';
+    const screen = build();
+    stage.appendChild(screen);
+    current = screen;
+    const focusTarget = screen.querySelector('button');
+    if (focusTarget) focusTarget.focus({ preventScroll: true });
+    busy = false;
+  };
+  if (current && current.isConnected) {
+    current.classList.add('leave');
+    setTimeout(mount, 350);
+  } else mount();
+}
+
+function intro() {
+  hideProgress();
+  show(() => {
+    const s = el('section', 'screen');
+    s.append(
+      el('div', 'spark', '✨'),
+      el('h1', '', 'Oii, isrraylene meu amor'),
+      el('p', 'lead', 'Preparei algumas mensagens leves pra trazer um sorriso ao seu dia. Uma de cada vez, sem pressa. 💜')
+    );
+    const b = el('button', 'btn', 'Começar');
+    b.type = 'button';
+    b.addEventListener('click', () => { startMusic(); total ? showMessage(0) : finale(); });
+    s.appendChild(b);
+    return s;
+  });
+}
+
+function showMessage(i) {
+  buildProgress();
+  updateProgress(i);
+  show(() => {
+    const s = el('section', 'screen');
+    const last = i === total - 1;
+    const b = el('button', 'btn', last ? 'Terminar' : 'Próxima mensagem');
+    b.type = 'button';
+    b.addEventListener('click', () => last ? finale() : showMessage(i + 1));
+    s.append(el('p', 'count', `${i + 1} de ${total}`), el('p', 'msg', messages[i]), b);
+    return s;
+  });
+}
+
+// A mensagem final só é criada aqui, quando a tela final é montada
+function finale() {
+  hideProgress();
+  show(() => {
+    const s = el('section', 'screen');
+    const t = el('h2', '', 'FIM ✨');
+    t.style.cssText = 'font-size:clamp(44px,12vw,80px);color:var(--lilac);text-shadow:0 4px 30px rgba(140,90,255,.6)';
+    const p = el('p', 'final-text', 'Fiz esse site só pra tira um sorriso seu e dizero quantovc e importantepra mim , espero que você goste! 💜');
+    const r = el('button', 'link', 'Reler as mensagens');
+    r.type = 'button';
+    r.addEventListener('click', intro);
+    if (photoSrc) {
+      const img = el('img', 'photo');
+      img.src = photoSrc;
+      img.alt = 'Uma foto especial';
+      img.addEventListener('error', () => img.remove());
+      s.append(img);
+    }
+    s.append(t, p, r);
+    startFloaties();
+    return s;
+  });
+}
+
+// Emojis subindo na tela final
+function startFloaties() {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const icons = ['✨', '💜', '✦', '🌟'];
+  const spawn = () => {
+    const f = el('span', 'floaty', icons[Math.floor(Math.random() * icons.length)]);
+    f.style.left = Math.random() * 94 + '%';
+    f.style.fontSize = (Math.random() * 16 + 16) + 'px';
+    f.style.setProperty('--t', (Math.random() * 5 + 8) + 's');
+    f.style.setProperty('--x', (Math.random() * 80 - 40) + 'px');
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 14000);
+  };
+  for (let i = 0; i < 6; i++) setTimeout(spawn, i * 250);
+  floatTimer = setInterval(spawn, 700);
+}
+function stopFloaties() {
+  clearInterval(floatTimer);
+  floatTimer = null;
+  document.querySelectorAll('.floaty').forEach(f => f.remove());
+}
+
+// Seta para a direita avança
+document.addEventListener('keydown', e => {
+  if (e.key !== 'ArrowRight' || busy) return;
+  const b = stage.querySelector('.btn');
+  if (b) b.click();
+});
+
+intro();
+</script>
+</body>
+</html>
